@@ -15,30 +15,3 @@ class Spaceship extends Floater
     myColorB = 150;
   }
 }
-
-class Bullet extends Floater
-{
-  public Bullet()
-  {
-    corners = 2;
-    xCorners = new int[]{3*u,2*u,8*u,2*u};
-    yCorners = new int[]{0,-2*u,0,2*u};
-    myAngle = Player.myAngle;
-    mySpeedX = 5 * Math.cos(myAngle);
-    mySpeedY = 5 * Math.sin(myAngle);
-    myCenterX = Player.myCenterX;
-    myCenterY = Player.myCenterY;
-    myColorR = 114;
-    myColorG = 118;
-    myColorB = 125;
-  }
-  
-  public void fire()
-  {
-    myAngle = Player.myAngle;
-    mySpeedX = Player.mySpeedX + (10 * Math.cos(myAngle));
-    mySpeedY = Player.mySpeedY + (10 * Math.sin(myAngle));
-    myCenterX = Player.myCenterX;
-    myCenterY = Player.myCenterY;
-  }
-}
