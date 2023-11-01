@@ -64,6 +64,7 @@ class Floater
   
   public void show()
   {
+    strokeWeight(1);
     fill(myColorR,myColorG,myColorB);
     stroke(myColorR,myColorG,myColorB);
     translate((float)myCenterX, (float)myCenterY);
@@ -76,5 +77,51 @@ class Floater
     endShape(CLOSE);
     rotate(-(float)myAngle);
     translate(-(float)myCenterX, -(float)myCenterY);
+  }
+  
+  public double findClosestTarget(boolean returnType)
+  {
+    int lowestDistIndex = 0;
+    double lowestDist = dist((float)Player.getX(), (float)Player.getY(), (float)belt.get(0).getX(), (float)belt.get(0).getY());
+    for(int a = 1; a < belt.size(); a++)
+    {
+      double newDist = dist((float)Player.getX(), (float)Player.getY(), (float)belt.get(a).getX(), (float)belt.get(a).getY());
+      if(lowestDist > newDist)
+      {
+        lowestDist = newDist;
+        lowestDistIndex = a;
+      }
+    }
+    if (returnType == true)
+    {
+      return lowestDistIndex;
+    } else 
+    {
+      return lowestDist;
+    }
+  }
+  public double getX()
+  {
+    return myCenterX;
+  }
+  public double getY()
+  {
+    return myCenterY;
+  }
+  public double getSpeedX()
+  {
+    return mySpeedX;
+  }
+  public double getSpeedY()
+  {
+    return mySpeedY;
+  }
+  public double getAngle()
+  {
+    return myAngle;
+  }
+  public double getSpeedAngle()
+  {
+    return mySpeedAngle;
   }
 }
