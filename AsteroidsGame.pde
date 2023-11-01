@@ -330,3 +330,10 @@ public void keyPressed()
       weaponIndex = 0;
     }
   }
+  
+  if (key == 'e')
+  {
+    Player.torque(-Player.getSpeedAngle());
+    Player.accelerate(0);
+  }
+}
