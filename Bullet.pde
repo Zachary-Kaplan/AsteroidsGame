@@ -17,7 +17,7 @@ class Bullet extends Floater
   }
   public Bullet(String weapon, float scale, double startX, double startY, double startAngle)
   {
-    scale(scale);
+    scale = 0;
     weaponClass = weapon;
     if (weaponClass == "Long Shot")
     {
@@ -75,7 +75,6 @@ class Bullet extends Floater
       myColorG = 0;
       myColorB = 0;
     }
-    scale(1/scale);
   }
   
   public void fire()
