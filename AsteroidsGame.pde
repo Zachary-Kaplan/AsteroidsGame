@@ -318,3 +318,133 @@ public void draw()
       D = false;
     }
 }
+
+public void keyPressed()
+{
+  if(key == 'h')
+  {
+    if (warpOn == false)
+    {
+      warpOn = true;
+    } else
+    {
+      Player.warp();
+      warpOn = false;
+    }
+  }
+  
+  //accelerate
+  if (key == 'w')
+  {
+    W = true;
+    S = false;
+  } else if ((key != 'w') && (D || A))
+  {
+    W = false;
+  }
+  if (key == 's')
+  {
+    S = true;
+    W = false;
+  } else if ((key != 's') && (D || A))
+  {
+    S = false;
+  } 
+  
+  //rotates
+  if (key == 'a')
+  {
+    A = true;
+    D = false;
+  } else if (key != 'a')
+  {
+    A = false;
+  }
+  if (key == 'd')
+  {
+    D = true;
+    A = false;
+  } else if (key != 'd')
+  {
+    D = false;
+  }
+  
+  //Fire
+  if (key == ' ')
+  {
+    if(timeSinceLastShot <= 0)
+    {
+      if(weaponType[weaponIndex] != "Point Defense")
+      {
+        defenseSystem = false;
+        shots.add(new Bullet(weaponType[weaponIndex],1, Player.getX(), Player.getY(), Player.getAngle()));
+        if(weaponType[weaponIndex] == "Long Shot")
+        {
+          timeSinceLastShot = 0.5;
+        } else if(weaponType[weaponIndex] == "Ion Wave")
+        {
+          timeSinceLastShot = 1;
+        } else if(weaponType[weaponIndex] == "Bomb Shot")
+        {
+          timeSinceLastShot = 0.75;
+        }
+      } else
+      {
+        defenseSystem = true;
+      }
+    }
+  } else 
+  {
+    defenseSystem = false;
+  }
+  //cycle weapon
+  if (key == 'q')
+  {
+    if (weaponIndex < weaponType.length - 1)
+    {
+      weaponIndex++;
+    } else
+    {
+      weaponIndex = 0;
+    }
+  }
+  
+  if (key == 'e')
+  {
+    Player.torque(-Player.getSpeedAngle());
+    Player.accelerate(0);
+  }
+  if (key == 'r')
+  {
+    if(weaponType[weaponIndex] == "Long Shot")
+    {
+      if(score > 1500)
+      {
+        score -= 1500;
+        swarm.add(new Drone(weaponType[weaponIndex]));
+      }
+    } else if(weaponType[weaponIndex] == "Ion Wave")
+    {
+      if(score > 2000)
+      {
+        score -= 2000;
+        swarm.add(new Drone(weaponType[weaponIndex]));
+      }
+    } else if(weaponType[weaponIndex] == "Bomb Shot")
+    {
+      if(score > 1750)
+      {
+        score -= 1750;
+        swarm.add(new Drone(weaponType[weaponIndex]));
+      }
+    }
+  }
+  if(key == 'f')
+  {
+    if(score > 100)
+    {
+      score -= 100;
+      hull += 1;
+    }
+  }
+}
