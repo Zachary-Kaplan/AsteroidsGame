@@ -13,7 +13,7 @@ boolean defenseSystem = false;
 int weaponIndex = 0;
 int hull = 100;
 float invincibilityFrames = 3;
-int score = 500000000;
+int score = 0;
 
 
 public void setup()
